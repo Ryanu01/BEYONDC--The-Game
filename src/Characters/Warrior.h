@@ -16,6 +16,9 @@ private:
     RigidBody* m_RigidBody;
     Animation* m_Animation;
 
+    float m_JumpTime;
+    float m_JumpForce;
+
     bool m_IsJumping;
     bool m_IsGrounded;
     Collider* m_Collider;
