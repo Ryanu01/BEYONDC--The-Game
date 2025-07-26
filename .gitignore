@@ -1,2 +1,21 @@
+# Editor & IDE files
 .vscode/
+
+# Local build script
 run.text
+
+# Build output
+main.exe
+*.o
+*.obj
+
+# SDL DLLs (platform-specific runtime)
+SDL2.dll
+SDL2_image.dll
+SDL2_mixer.dll
+SDL2_ttf.dll
+
+# Misc
+*.log
+*.tmp
+*.bak
