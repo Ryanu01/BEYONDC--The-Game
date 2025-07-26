@@ -57,6 +57,10 @@ public:
         m_Velocity = m_Accelaration * dt;
         m_Postion = m_Velocity * dt;
     }
+
+
+
+
 };
 
 #endif
