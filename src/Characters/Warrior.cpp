@@ -35,7 +35,7 @@ void Warrior :: Draw()
 
 void Warrior::Update(float dt)
 {
-    m_Animation->SetProps("player", 1, 2, 100, SDL_FLIP_NONE);
+    m_Animation->SetProps("player", 1, 2, 200, SDL_FLIP_NONE);
     m_RigidBody->UnSetForce();
 
     if (Input::GetInstance()->GetKeyDown(SDL_SCANCODE_A))
@@ -95,6 +95,11 @@ void Warrior::Update(float dt)
     else
     {
         m_IsGrounded = false;
+    }
+
+    if(m_IsJumping || !m_IsGrounded)
+    {
+        m_Animation->SetProps("player_jump", 1, 12, 100, SDL_FLIP_NONE);
     }
 
     m_Origin->X = m_Transform->X + m_Width / 2;
