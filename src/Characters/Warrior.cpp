@@ -11,7 +11,7 @@ Warrior ::Warrior(Properties* props) : Character(props)
     m_JumpForce = JUMP_FORCE;
 
     m_Collider = new Collider();
-    m_Collider->SetBuffer(35, 64, 0, 0);
+    m_Collider->SetBuffer(10, 5, 71, 65);
 
     m_RigidBody = new RigidBody();
     m_RigidBody->SetGravity(3.0f);
@@ -23,12 +23,12 @@ Warrior ::Warrior(Properties* props) : Character(props)
 void Warrior :: Draw()
 {
     Vector2D cam = Camera::GetInstance()->GetPosition();
-    m_Animation->Draw(m_Transform->X, m_Transform->Y, m_Width, m_Height);
+    m_Animation->Draw(m_Transform->X - cam.X, m_Transform->Y - cam.Y, m_Width, m_Height);
 
     SDL_Rect box = m_Collider->Get();
     box.x -= cam.X;
     box.y -= cam.Y;
-    // SDL_SetRenderDrawColor(Engine::GetInstance()->GetRenderer(), 0, 0, 0, 0);   
+    SDL_SetRenderDrawColor(Engine::GetInstance()->GetRenderer(), 0, 0, 0, 0);   
     SDL_RenderDrawRect(Engine::GetInstance()->GetRenderer(), &box);
 }
 
