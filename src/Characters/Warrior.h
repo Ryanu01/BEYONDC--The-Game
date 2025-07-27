@@ -8,7 +8,9 @@
 #include "Physics/Vector2D.h"
 
 #define JUMP_TIME 15.0f
-#define JUMP_FORCE 20.0f
+#define JUMP_FORCE 15.0f
+#define RUN_FORCE 4.0F
+#define ATTACK_TIME 20.0F 
 
 class Warrior : public Character
 {
@@ -18,8 +20,12 @@ private:
 
     float m_JumpTime;
     float m_JumpForce;
+    float m_AttackTIme;
 
+    bool m_IsRunning;
     bool m_IsJumping;
+    bool m_IsFalling;
+    bool m_IsAttacking;
     bool m_IsGrounded;
     Collider* m_Collider;
     Vector2D m_LastSafePosition;
@@ -31,6 +37,9 @@ public:
     virtual void Update(float dt);
     virtual void Clean();
     
+
+private:
+    void AnimationState();
 };
 
 #endif

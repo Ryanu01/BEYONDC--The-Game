@@ -52,7 +52,8 @@ bool Engine ::init()
     TextureManager::GetInstance()->LoadTexture("player", "../assets/warrior main.png");
     TextureManager::GetInstance()->LoadTexture("player_run", "../assets/run.png");
     TextureManager::GetInstance()->LoadTexture("player_jump", "../assets/jump.png");
-
+    TextureManager::GetInstance()->LoadTexture("player_falling", "../assets/falling.png");
+    TextureManager::GetInstance()->LoadTexture("player_attack", "../assets/attack.png");
     player = new Warrior(new Properties("player", 100, 200, 32, 32));
     Transform tf;
     tf.Log();
