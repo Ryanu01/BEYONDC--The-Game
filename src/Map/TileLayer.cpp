@@ -2,13 +2,29 @@
 #include "Graphics\TextureManager.h"
 #include <iostream>
 
-TileLayer ::TileLayer(int tilesize, int rowcount, int colcount, TileMap tilemap, TilesetList tilesets) : m_Tilesets(tilesets)
-{
-    m_RowCount = rowcount;
-    m_ColCount = colcount;
-    m_Tilemap = tilemap;
+// TileLayer ::TileLayer(int tilesize, int rowcount, int colcount, TileMap tilemap, TilesetList tilesets) : m_Tilesets(tilesets)
+// {
+//     m_RowCount = rowcount;
+//     m_ColCount = colcount;
+//     m_Tilemap = tilemap;
     
 
+//     if (m_Tilesets.empty())
+//     {
+//         std::cerr << "Error: No tilesets passed to TileLayer!" << std::endl;
+//         return;
+//     }
+
+//     for (unsigned int i = 0; i < m_Tilesets.size(); i++)
+//     {
+//         TextureManager::GetInstance()->LoadTexture(m_Tilesets[i].Name, "../assets/maps/" + m_Tilesets[i].Source);
+//     }
+// }
+
+TileLayer::TileLayer(int tilesize, int rowcount, int colcount, TileMap tilemap, TilesetList tilesets, const std::string& name)
+    : m_TileSize(tilesize), m_RowCount(rowcount), m_ColCount(colcount),
+      m_Tilemap(tilemap), m_Tilesets(tilesets), m_Name(name) // assign name
+{
     if (m_Tilesets.empty())
     {
         std::cerr << "Error: No tilesets passed to TileLayer!" << std::endl;
@@ -20,6 +36,10 @@ TileLayer ::TileLayer(int tilesize, int rowcount, int colcount, TileMap tilemap,
         TextureManager::GetInstance()->LoadTexture(m_Tilesets[i].Name, "../assets/maps/" + m_Tilesets[i].Source);
     }
 }
+
+
+
+
 
 void TileLayer::Render()
 {

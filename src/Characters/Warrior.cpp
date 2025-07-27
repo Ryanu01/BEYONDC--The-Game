@@ -11,7 +11,7 @@ Warrior ::Warrior(Properties* props) : Character(props)
     m_JumpForce = JUMP_FORCE;
 
     m_Collider = new Collider();
-    m_Collider->SetBuffer(0, 0, 0, 0);
+    m_Collider->SetBuffer(35, 64, 0, 0);
 
     m_RigidBody = new RigidBody();
     m_RigidBody->SetGravity(3.0f);
@@ -28,7 +28,7 @@ void Warrior :: Draw()
     SDL_Rect box = m_Collider->Get();
     box.x -= cam.X;
     box.y -= cam.Y;
-    SDL_SetRenderDrawColor(Engine::GetInstance()->GetRenderer(), 0, 0, 0, 0);   
+    // SDL_SetRenderDrawColor(Engine::GetInstance()->GetRenderer(), 0, 0, 0, 0);   
     SDL_RenderDrawRect(Engine::GetInstance()->GetRenderer(), &box);
 }
 
@@ -57,12 +57,12 @@ void Warrior::Update(float dt)
     {
         m_IsJumping = true;
         m_IsGrounded = false;
-        m_RigidBody->ApplyForceY(UPWARD * m_JumpForce);
+        m_RigidBody->ApplyForceY(UPWARD*m_JumpForce);
     }
     if (Input::GetInstance()->GetKeyDown(SDL_SCANCODE_J) && m_IsJumping && m_JumpTime > 0)
     {
         m_JumpTime -= dt;
-        m_RigidBody->ApplyForceY(UPWARD * m_JumpForce);
+        m_RigidBody->ApplyForceY(UPWARD*m_JumpForce);
     }
     else
     {

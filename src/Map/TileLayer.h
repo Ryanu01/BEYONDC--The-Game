@@ -24,9 +24,11 @@ private:
 
     TileMap m_Tilemap;
     TilesetList m_Tilesets;
+    std::string m_Name;
 public:
-    TileLayer(int tilesize, int rowcount, int colcount, TileMap tilemap, TilesetList tilesets);
+    TileLayer(int tilesize, int rowcount, int colcount, TileMap tilemap, TilesetList tilesets, const std::string& name);
     virtual void Render();
+    std::string GetName() const { return m_Name; }
     virtual void Update();
     inline TileMap GetTilemap(){return m_Tilemap;}
 };

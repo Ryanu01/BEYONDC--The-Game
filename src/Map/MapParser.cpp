@@ -106,7 +106,12 @@ TileLayer* MapParser::ParseTileLayer(tinyxml2::XMLElement* xmlLayer, TilesetList
         
     }
     
-    return (new TileLayer(tilesize, rowcount, colcount, tilemap, tilesets));
+
+    std::string layerName = xmlLayer->Attribute("name"); // <-- get name from XML
+    return new TileLayer(tilesize, rowcount, colcount, tilemap, tilesets, layerName);
+
+
+    // return (new TileLayer(tilesize, rowcount, colcount, tilemap, tilesets));
 }
 
 void MapParser::Clean()
