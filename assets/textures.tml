@@ -1,0 +1,9 @@
+<?xml version = "1.0" encoding="UTF-8"?>
+<textures>
+    <texture id = "player" source="idle.png"/>
+    <texture id = "player_run" source="run.png"/>
+    <texture id = "player_jump" source="jump.png"/>
+    <texture id = "player_falling" source="falling.png"/>
+    <texture id = "player_attack" source="attack.png"/>
+
+</textures>

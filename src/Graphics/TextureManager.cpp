@@ -1,6 +1,7 @@
 #include "TextureManager.h"
 #include "Engine.h"
 #include "Camera/Camera.h"
+#include "Vendor/tinyxml2.h"
 
 TextureManager* TextureManager::s_instance = nullptr;
 
@@ -26,11 +27,11 @@ bool TextureManager :: LoadTexture(std::string id, std::string filename)
     
 }
 
-void TextureManager :: Draw(std::string id, int x, int y, int width, int height, SDL_RendererFlip flip)
+void TextureManager :: Draw(std::string id, int x, int y, int width, int height, float scaleX, float scaleY, float scrollRatio, SDL_RendererFlip flip)
 {
     SDL_Rect srcRect = {0, 0, width, height};    
-    Vector2D cam = Camera::GetInstance()->GetPosition()*0.5;
-    SDL_Rect destRect = {static_cast<int>(x -cam.X), static_cast<int>(y - cam.Y), width, height};
+    Vector2D cam = Camera::GetInstance()->GetPosition()*scrollRatio;
+    SDL_Rect destRect = {static_cast<int>(x -cam.X), static_cast<int>(y - cam.Y), static_cast<int>(width*scaleX), static_cast<int>(height*scaleY)};
 
     SDL_RenderCopyEx(Engine::GetInstance()->GetRenderer(), m_TextureMap[id], &srcRect, &destRect, 0, nullptr, flip);
 }
@@ -55,6 +56,28 @@ void TextureManager :: Drop(std::string id)
 {
     SDL_DestroyTexture(m_TextureMap[id]);
     m_TextureMap.erase(id);
+}
+
+bool TextureManager:: ParseTexture(std::string source)
+{
+    tinyxml2::XMLDocument xml;
+    xml.LoadFile(source.c_str());
+    if(xml.Error())
+    {
+        std::cout<<"Failed to load: "<<source<<std::endl;
+        return false;
+    }
+
+    tinyxml2::XMLElement* root = xml.RootElement();
+    for(tinyxml2::XMLElement* e = root->FirstChildElement(); e != nullptr; e = e->NextSiblingElement())
+    {
+        if(e->Value() == std::string("texture")){
+            std::string id = e->Attribute("id");
+            std::string src = e->Attribute("source");
+            LoadTexture(id,"../assets/" + src);
+        }
+    }
+    return true;
 }
 
 void TextureManager :: clean()
