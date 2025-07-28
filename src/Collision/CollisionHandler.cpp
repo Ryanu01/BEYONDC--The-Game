@@ -24,8 +24,6 @@ CollisionHandler::CollisionHandler()
     }
 
     std::cerr << "[ERROR] Collision Layer Not Found!\n";
-
-
 }
 
 bool CollisionHandler::CheckCollision(SDL_Rect a, SDL_Rect b)
@@ -69,10 +67,6 @@ bool CollisionHandler::MapCollision(SDL_Rect a)
    
     int mapHeight = m_CollisionTileMap.size();
     int mapWidth = (mapHeight > 0)? m_CollisionTileMap[0].size(): 0;
-
-
-
-  
 
     for (int i = left_tile; i <= right_tile; ++i)
     {

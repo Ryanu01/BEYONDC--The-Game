@@ -26,7 +26,7 @@ Warrior ::Warrior(Properties* props) : Character(props)
     m_RigidBody = new RigidBody();
     m_RigidBody->SetGravity(3.0f);
 
-    m_Animation = new Animation();
+    m_Animation = new SpriteAnimation();
     m_Animation->SetProps(m_TextureID, 1, 8, 150);
 }
 
@@ -35,11 +35,6 @@ void Warrior :: Draw()
     Vector2D cam = Camera::GetInstance()->GetPosition();
     m_Animation->Draw(m_Transform->X - cam.X, m_Transform->Y - cam.Y, m_Width, m_Height, m_Flip);
 
-    // SDL_Rect box = m_Collider->Get();
-    // box.x -= cam.X;
-    // box.y -= cam.Y;
-    // SDL_SetRenderDrawColor(Engine::GetInstance()->GetRenderer(), 0, 0, 0, 0);   
-    // SDL_RenderDrawRect(Engine::GetInstance()->GetRenderer(), &box);
 }
 
 
@@ -135,34 +130,34 @@ void Warrior::Update(float dt)
     m_Origin->Y = m_Transform->Y + m_Height / 2;
     AnimationState();
     
-    m_Animation->Update();
+    m_Animation->Update(dt);
 }
+
 
 void Warrior::AnimationState()
 {
-    m_Animation->SetProps("player", 1, 2, 200);
-
-    if(m_IsRunning)
-    {
-        m_Animation->SetProps("player_run", 1, 8, 60);
-    }
-
-    if (m_IsJumping)
-    {
-        m_Animation->SetProps("player_jump", 1, 8, 100);
-    }
-    
-    if (m_IsFalling)
-    {
-        m_Animation->SetProps("player_falling", 1, 4, 100);
-    }
-    
     if (m_IsAttacking)
     {
         m_Animation->SetProps("player_attack", 1, 8, 90);
     }
-    
+    else if (m_IsJumping)
+    {
+        m_Animation->SetProps("player_jump", 1, 8, 100);
+    }
+    else if (m_IsFalling)
+    {
+        m_Animation->SetProps("player_falling", 1, 4, 100);
+    }
+    else if (m_IsRunning)
+    {
+        m_Animation->SetProps("player_run", 1, 8, 60);
+    }
+    else
+    {
+        m_Animation->SetProps("player", 1, 2, 200); // idle
+    }
 }
+
 
 void Warrior ::Clean()
 {

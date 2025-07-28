@@ -2,7 +2,7 @@
 #define WARRIOR_H
 
 #include "Physics\RigidBody.h"
-#include "Animation\Animation.h"
+#include "Animation\SpriteAnimation.h"
 #include "Character.h"
 #include "Physics/Collider.h"
 #include "Physics/Vector2D.h"
@@ -16,7 +16,7 @@ class Warrior : public Character
 {
 private:
     RigidBody* m_RigidBody;
-    Animation* m_Animation;
+    SpriteAnimation* m_Animation;
 
     float m_JumpTime;
     float m_JumpForce;

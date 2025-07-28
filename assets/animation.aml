@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<animations>
+    <sequence id = "soldier_idle" frameCount="4" speed="100" width="72" height="86">
+    <frame textureID = "soldier_idle1"/>
+    <!-- <frame textureID = "soldier_idle2"/>
+    <frame textureID = "soldier_idle3"/>
+    <frame textureID = "soldier_idle4"/> -->
+    </sequence>
+
+    <!-- <sequence id = "soldier_attack" frameCount="5" speed="100" width="86" height="86">
+    <frame textureID = "soldier_attack1"/> -->
+    <!-- <frame textureID = "soldier_attack2"/>
+    <frame textureID = "soldier_attack3"/>
+    <frame textureID = "soldier_attack4"/>
+    <frame textureID = "soldier_attack5"/> -->
+    <!-- </sequence> -->
+<!-- 
+    <sequence id = "soldier_walk" frameCount="8" speed="100" width = "73" height = "86">
+    <frame textureID = "soldier_walk1"/> -->
+    <!-- <frame textureID = "soldier_walk2"/>
+    <frame textureID = "soldier_walk3"/>
+    <frame textureID = "soldier_walk4"/>
+    <frame textureID = "soldier_walk5"/>
+    <frame textureID = "soldier_walk6"/>
+    <frame textureID = "soldier_walk7"/>
+    <frame textureID = "soldier_walk8"/> -->
+    <!-- </sequence> -->
+</animations>

@@ -5,19 +5,17 @@
 
 class Animation
 {
-private:
-    int m_SpriteRow, m_SpriteFrame;
-    int m_AnimSpeed, m_FrameCount;
-    std::string m_TextureID;
+protected:
+    bool m_Repeat;
+    bool m_IsEnded;
+    int m_CurrentFrame;
 
 
 public:
-    Animation(){}
+    Animation(bool repeat = true) : m_Repeat(repeat){m_IsEnded = false;}
 
-    void Update();
-    void Draw(float x, float y, int spriteWidth, int spriteHeight, SDL_RendererFlip flip = SDL_FLIP_NONE);
-    void SetProps(std::string textureID, int spriteRow, int FrameCount, int animSpeed);
-
+    virtual void Update(float dt) = 0;
+    inline bool IsEnded(){return m_IsEnded;}
 };
 
 #endif
