@@ -16,6 +16,9 @@ private:
 
 public:
     
+    SDL_Texture* GetTexture(std::string id);
+
+
     static TextureManager* GetInstance()
     {
         return s_instance = (s_instance != nullptr)? s_instance : new TextureManager();

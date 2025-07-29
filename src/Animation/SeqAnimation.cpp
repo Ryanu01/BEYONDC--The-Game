@@ -1,14 +1,40 @@
 #include "SeqAnimation.h"
 #include "Vendor/tinyxml2.h"
 #include<iostream>
+#include "Camera/Camera.h"
 #include "Graphics/TextureManager.h"
 
 SeqAnimation :: SeqAnimation(bool repeat):Animation(repeat){}
 
 void SeqAnimation::DrawFrame(float x, float y, float xScale, float yScale, SDL_RendererFlip flip)
 {
-    TextureManager::GetInstance()->Draw(m_CurrentSeq.TextureID[m_CurrentFrame], x, y, m_CurrentSeq.Width, m_CurrentSeq.Height, xScale, yScale, flip);
+    int frameX = m_CurrentFrame * m_CurrentSeq.Width;
+
+    SDL_Rect srcRect = {
+        frameX,                    // x: shift horizontally based on current frame
+        0,                         // y: assuming 1 row
+        m_CurrentSeq.Width,
+        m_CurrentSeq.Height
+    };
+
+    Vector2D cam = Camera::GetInstance()->GetPosition();
+
+    SDL_Rect destRect = {
+        static_cast<int>(x - cam.X),
+        static_cast<int>(y - cam.Y),
+        static_cast<int>(m_CurrentSeq.Width * xScale),
+        static_cast<int>(m_CurrentSeq.Height * yScale)
+    };
+
+    SDL_Texture* tex = TextureManager::GetInstance()->GetTexture(m_CurrentSeq.TextureID[0]);
+    if (!tex) {
+        std::cout << "Texture is null! ID: " << m_CurrentSeq.TextureID[0] << std::endl;
+        return;
+    }
+    SDL_RenderCopyEx(Engine::GetInstance()->GetRenderer(), tex, &srcRect, &destRect, 0, nullptr, flip);
 }
+
+
 
 void SeqAnimation::Update(float dt)
 {

@@ -6,7 +6,7 @@
 #include "Timer/Timer.h"
 #include "Map/MapParser.h"
 #include "Camera/Camera.h"
-
+#include "Characters/Enemy.h"
 
 Engine *Engine::s_Instance = nullptr;
 Warrior* player = nullptr;
@@ -51,9 +51,10 @@ bool Engine ::init()
     TextureManager::GetInstance()->ParseTexture("../assets/textures.tml");
 
     player = new Warrior(new Properties("player", 100, 200, 32, 32));
-    Transform tf;
-    tf.Log();
+    Enemy* Soldier = new Enemy(new Properties("soldier", 400, 200, 45, 48));
 
+    m_GameObjects.push_back(player);
+    m_GameObjects.push_back(Soldier);
 
     Camera::GetInstance()->SetTarget(player->GetOrigin());
     return m_isRuning = true;
@@ -61,7 +62,13 @@ bool Engine ::init()
 
 bool Engine ::clean()
 {
+    for(unsigned int i = 0; i != m_GameObjects.size(); i++)
+    {
+        m_GameObjects[i]->Clean();
+    }
+
     TextureManager::GetInstance()->clean();
+    MapParser::GetInstance()->Clean();
     SDL_DestroyWindow(m_Window);
     m_Window = nullptr;
     SDL_DestroyRenderer(m_Renderer);
@@ -81,7 +88,12 @@ void Engine ::Quit()
 void Engine ::Update()
 {   
     float dt = Timer::GetInstance()->GetDeltaTime();
-    player->Update(dt);
+    
+    for(unsigned int i = 0; i != m_GameObjects.size(); i++)
+    {
+        m_GameObjects[i]->Update(dt);
+    }
+
     Camera::GetInstance()->Update(dt);
     m_LevelMap->Update();
 }
@@ -90,10 +102,13 @@ void Engine ::Render()
 {
     SDL_SetRenderDrawColor(m_Renderer, 124, 210, 255, 255);
     SDL_RenderClear(m_Renderer);
-
     m_LevelMap->Render();
 
-    player->Draw();
+    for(unsigned int i = 0; i != m_GameObjects.size();i++)
+    {
+        m_GameObjects[i]->Draw();
+    }
+
     SDL_RenderPresent(m_Renderer);
 
 }

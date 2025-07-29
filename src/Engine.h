@@ -3,7 +3,8 @@
 #include<SDL2/SDL.h>
 #include<SDL2/SDL_image.h>
 #include "Map/GameMap.h"
-
+#include<vector>
+#include "Object/GameObject.h"
 #define SCREEN_WIDTH 960
 #define SCREEN_HEIGHT 640
 
@@ -11,12 +12,13 @@
 class Engine
 {
 private:
+    Engine(){};
     static Engine* s_Instance;
     bool m_isRuning;
     GameMap* m_LevelMap;
     SDL_Window* m_Window;
     SDL_Renderer* m_Renderer;
-    Engine(){};
+    std::vector<GameObject*> m_GameObjects;
 
 
 public:

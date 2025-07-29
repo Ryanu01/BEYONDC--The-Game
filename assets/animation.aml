@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <animations>
-    <sequence id = "soldier_idle" frameCount="4" speed="100" width="72" height="86">
-    <frame textureID = "soldier_idle1"/>
+    <sequence id = "soldier_idle" frameCount="4" speed="100" width="146" height="172">
+    <frame textureID = "soldier_idle"/>
     <!-- <frame textureID = "soldier_idle2"/>
     <frame textureID = "soldier_idle3"/>
     <frame textureID = "soldier_idle4"/> -->

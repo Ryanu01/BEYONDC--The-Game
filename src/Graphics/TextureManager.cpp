@@ -80,6 +80,13 @@ bool TextureManager:: ParseTexture(std::string source)
     return true;
 }
 
+// TextureManager.cpp
+SDL_Texture* TextureManager::GetTexture(std::string id)
+{
+    return m_TextureMap[id];
+}
+
+
 void TextureManager :: clean()
 {
     std::map<std::string, SDL_Texture*>::iterator it;
