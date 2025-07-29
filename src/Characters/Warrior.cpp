@@ -5,6 +5,9 @@
 #include "Physics\Transform.h"
 #include "Collision/CollisionHandler.h"
 #include "Camera/Camera.h"
+#include "Factory/ObjectFactory.h"
+
+static Registrar<Warrior> registrar("PLAYER");
 Warrior ::Warrior(Properties* props) : Character(props)
 {
 
@@ -34,7 +37,7 @@ void Warrior :: Draw()
 {
     Vector2D cam = Camera::GetInstance()->GetPosition();
     m_Animation->Draw(m_Transform->X - cam.X, m_Transform->Y - cam.Y, m_Width, m_Height, m_Flip);
-
+    m_Collider->Draw();
 }
 
 

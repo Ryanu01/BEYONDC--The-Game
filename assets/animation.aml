@@ -2,18 +2,11 @@
 <animations>
     <sequence id = "soldier_idle" frameCount="4" speed="100" width="146" height="172">
     <frame textureID = "soldier_idle"/>
-    <!-- <frame textureID = "soldier_idle2"/>
-    <frame textureID = "soldier_idle3"/>
-    <frame textureID = "soldier_idle4"/> -->
     </sequence>
 
     <!-- <sequence id = "soldier_attack" frameCount="5" speed="100" width="86" height="86">
-    <frame textureID = "soldier_attack1"/> -->
-    <!-- <frame textureID = "soldier_attack2"/>
-    <frame textureID = "soldier_attack3"/>
-    <frame textureID = "soldier_attack4"/>
-    <frame textureID = "soldier_attack5"/> -->
-    <!-- </sequence> -->
+    <frame textureID = "soldier_attack1"/> 
+    </sequence> -->
 <!-- 
     <sequence id = "soldier_walk" frameCount="8" speed="100" width = "73" height = "86">
     <frame textureID = "soldier_walk1"/> -->

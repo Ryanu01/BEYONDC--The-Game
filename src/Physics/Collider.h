@@ -1,7 +1,8 @@
 #ifndef COLLIDER_H
 #define COLLIDER_H
 #include<SDL2/SDL.h>
-
+#include "Camera/Camera.h"
+#include"Collision/CollisionHandler.h"
 class Collider
 {
 private:
@@ -20,6 +21,13 @@ public:
             w - (m_Buffer.x + m_Buffer.w),
             h - (m_Buffer.y + m_Buffer.h)
         };
+    }
+
+    void Draw()
+    {
+        Vector2D cam = Camera::GetInstance()->GetPosition();
+        SDL_Rect box = {(int) (m_Box.x - cam.X), (int)(m_Box.y - cam.Y), m_Box.w, m_Box.h};
+        SDL_RenderDrawRect(Engine::GetInstance()->GetRenderer(), &box);
     }
 };
 

@@ -7,6 +7,7 @@
 #include "Map/MapParser.h"
 #include "Camera/Camera.h"
 #include "Characters/Enemy.h"
+#include "Factory/ObjectFactory.h"
 
 Engine *Engine::s_Instance = nullptr;
 Warrior* player = nullptr;
@@ -50,7 +51,9 @@ bool Engine ::init()
     m_LevelMap = MapParser::GetInstance()->GetMaps("earth");
     TextureManager::GetInstance()->ParseTexture("../assets/textures.tml");
 
-    player = new Warrior(new Properties("player", 100, 200, 32, 32));
+    Properties* props = new Properties("player_idle", 100, 200, 32, 32);
+    GameObject* player = ObjectFactory::GetInstance()->CreateObject("PLAYER", props);
+    // player = new Warrior(new Properties("player", 100, 200, 32, 32));
     Enemy* Soldier = new Enemy(new Properties("soldier", 400, 200, 45, 48));
 
     m_GameObjects.push_back(player);
