@@ -3,6 +3,7 @@
 
 # Local build script
 run.text
+run.txt
 
 # Build output
 main.exe
