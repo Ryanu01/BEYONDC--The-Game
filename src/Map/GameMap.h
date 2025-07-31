@@ -28,6 +28,18 @@ public:
         
     }
 
+    void Clean()
+    {
+        for(auto layer : m_MapLayer)
+        {
+            if(layer)
+            {
+                delete layer;
+            }
+        }
+        m_MapLayer.clear();
+    }
+
     std::vector<Layer*> GetMapLayers(){return m_MapLayer;}
 
 };

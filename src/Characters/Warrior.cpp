@@ -37,7 +37,7 @@ void Warrior :: Draw()
 {
     Vector2D cam = Camera::GetInstance()->GetPosition();
     m_Animation->Draw(m_Transform->X - cam.X, m_Transform->Y - cam.Y, m_Width, m_Height, m_Flip);
-    m_Collider->Draw();
+    // m_Collider->Draw();
 }
 
 

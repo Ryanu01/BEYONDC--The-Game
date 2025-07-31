@@ -33,6 +33,14 @@ bool CollisionHandler::CheckCollision(SDL_Rect a, SDL_Rect b)
     return (x_overlaps && y_overlaps);
 }
 
+void CollisionHandler::SetCollisionMap(const TileMap& tilemap, int tilesize)
+{
+    m_CollisionTileMap = tilemap;
+    m_TileSize = tilesize;
+    m_MapHeight = tilemap.size();
+    m_MapWidth= tilemap[0].size();
+}
+
 bool CollisionHandler::MapCollision(SDL_Rect a)
 {
     int tileSize = 32;

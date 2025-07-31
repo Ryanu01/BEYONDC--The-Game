@@ -19,7 +19,7 @@ Enemy::Enemy(Properties* props) : Character(props){
 void Enemy :: Draw()
 {
     m_Animaton->DrawFrame(m_Transform->X, m_Transform->Y, 0.6f, 0.6f, SDL_FLIP_HORIZONTAL);
-    m_Collider->Draw();
+    // m_Collider->Draw();
 }
 
 void Enemy::Update(float dt)
@@ -57,8 +57,8 @@ void Enemy::Update(float dt)
 
 void Enemy :: Clean()
 {
-    // std::cout << "Enemy cleaned up.\n";
-    // delete m_Collider;
-    // delete m_RigidBody;
-    // delete m_Animaton;
+    std::cout << "Enemy cleaned up.\n";
+    delete m_Collider;
+    delete m_RigidBody;
+    delete m_Animaton;
 }

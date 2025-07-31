@@ -30,6 +30,9 @@ public:
     virtual void Render();
     std::string GetName() const { return m_Name; }
     virtual void Update();
+    inline int GetTileSize(){return m_TileSize;}
+    inline int GetWidth(){return m_ColCount;}
+    inline int GetHeight(){return m_RowCount;}
     inline TileMap GetTilemap(){return m_Tilemap;}
 };
 
