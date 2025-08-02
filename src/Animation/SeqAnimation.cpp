@@ -36,6 +36,8 @@ void SeqAnimation::DrawFrame(float x, float y, float xScale, float yScale, SDL_R
 
 
 
+
+
 void SeqAnimation::Update(float dt)
 {
     if(m_Repeat || !m_IsEnded){
@@ -56,11 +58,17 @@ void SeqAnimation::SetCurrentseq(std::string seqID)
     if(m_SeqMap.count(seqID) > 0)
     {
         m_CurrentSeq = m_SeqMap[seqID];
+        m_CurrentSeqID = seqID;
     }
     else
     {
         std::cout<< "The given Sequence Animation is not matching: " << seqID <<std::endl;
     }
+}
+
+std::string SeqAnimation::GetCurrentSeq() const 
+{
+    return m_CurrentSeqID;
 }
 
 void SeqAnimation::Parse(std::string source)

@@ -1,6 +1,7 @@
 #ifndef VECTOR2D_H
 #define VECTOR2D_H
 #include<iostream>
+#include<cmath>
 #include<string>
 
 class Vector2D
@@ -26,7 +27,21 @@ public:
     {
         return Vector2D(X*scalar, Y*scalar);
     }
+
+    static float Distance(Vector2D a, Vector2D b){
+        return sqrt(pow(b.X - a.X, 2) + pow(b.Y - a.Y, 2));
+    }
   
+    //Normalize funxtion
+    Vector2D Normalize() const{
+        float length = sqrt(X*X + Y*Y);
+        if(length == 0)
+        {
+            return Vector2D(0,0);
+        }
+        return Vector2D(X/length, Y/length);
+    }
+
     void Log(std::string msg = "")
     {
         std::cout<< msg <<"(X Y) = (" << X << " "<< Y << ")"<<std::endl;

@@ -50,8 +50,16 @@ public:
     inline Vector2D Velocity(){return m_Velocity;}
     inline Vector2D Accelaration(){return m_Accelaration;}
 
+    //Seting Velocity for detection
+    void SetVelocity(const Vector2D& velocity)
+    {
+        m_Velocity = velocity;
+    }
+
     //Update
     void Update(float dt){
+        m_Postion.X = m_Velocity.X * dt;
+        m_Postion.Y = m_Velocity.Y * dt;
         m_Accelaration.X = (m_Force.X + m_Friction.X)/m_Mass;
         m_Accelaration.Y = m_Gravity + m_Force.Y/m_Mass;
         m_Velocity = m_Accelaration * dt;

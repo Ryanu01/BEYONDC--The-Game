@@ -11,8 +11,11 @@ class Enemy : public Character
 private:
     Collider* m_Collider;
     RigidBody* m_RigidBody;
-    SeqAnimation* m_Animaton;
+    SeqAnimation* m_Animation;
     Vector2D m_LastSafePosition;
+    float m_DetectionRadius = 200.0f;
+    float m_Speed = 2.0f;
+    bool m_Ischasing = false;
 
 public:
     Enemy(Properties* props);

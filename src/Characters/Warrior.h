@@ -17,6 +17,7 @@ class Warrior : public Character
 private:
     RigidBody* m_RigidBody;
     SpriteAnimation* m_Animation;
+    static Warrior* s_Instance;
 
     float m_JumpTime;
     float m_JumpForce;
@@ -32,8 +33,9 @@ private:
     
 public:
     Warrior(Properties *props);
-
+    static Warrior* GetInstance();
     virtual void Draw();
+    Vector2D Getproperorigin();
     virtual void Update(float dt);
     virtual void Clean();
     

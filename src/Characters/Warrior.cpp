@@ -7,32 +7,40 @@
 #include "Camera/Camera.h"
 #include "Factory/ObjectFactory.h"
 
+Warrior* Warrior::s_Instance = nullptr;
 static Registrar<Warrior> registrar("PLAYER");
+
+
 Warrior ::Warrior(Properties* props) : Character(props)
 {
-
+    s_Instance = this;
     m_IsRunning = false;
     m_IsAttacking = false;
     m_IsGrounded = false;
     m_IsJumping = false;
-
+    
     m_Flip = SDL_FLIP_NONE;
-
+    
     m_JumpTime = JUMP_TIME;
     m_JumpForce = JUMP_FORCE;
     m_AttackTIme = ATTACK_TIME;
-
-
+    
+    
     m_Collider = new Collider();
     m_Collider->SetBuffer(10, 5, 71, 65);
-
+    
     m_RigidBody = new RigidBody();
     m_RigidBody->SetGravity(3.0f);
-
+    
     m_Animation = new SpriteAnimation();
     m_Animation->SetProps(m_TextureID, 1, 8, 150);
 }
 
+Warrior* Warrior::GetInstance()
+{
+    return s_Instance;
+
+}
 void Warrior :: Draw()
 {
     Vector2D cam = Camera::GetInstance()->GetPosition();
@@ -40,6 +48,12 @@ void Warrior :: Draw()
     // m_Collider->Draw();
 }
 
+Vector2D Warrior :: Getproperorigin() 
+{
+    float originX = m_Transform->X + (m_Width * 0.5f);
+    float originY = m_Transform->Y + (m_Height * 0.5f);
+    return Vector2D(originX, originY);
+}
 
 void Warrior::Update(float dt)
 {

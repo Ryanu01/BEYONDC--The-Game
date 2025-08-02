@@ -7,5 +7,6 @@
     <texture id = "player_attack" source="attack.png"/>
 
     <texture id = "soldier_idle" source = "idle_enemy.png"/>
+    <texture id = "soldier_run" source = "enemy_run.png"/>
     
 </textures>
