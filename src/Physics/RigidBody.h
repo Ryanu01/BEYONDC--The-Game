@@ -23,6 +23,7 @@ private:
     Vector2D m_Postion;
     Vector2D m_Velocity;
     Vector2D m_Accelaration;
+    Vector2D m_PositionDelta;
 
 public:
     RigidBody(){
@@ -49,6 +50,7 @@ public:
     inline Vector2D Position(){return m_Postion;}
     inline Vector2D Velocity(){return m_Velocity;}
     inline Vector2D Accelaration(){return m_Accelaration;}
+    inline Vector2D PositionDelta(){ return m_PositionDelta;}
 
     //Seting Velocity for detection
     void SetVelocity(const Vector2D& velocity)
@@ -56,18 +58,25 @@ public:
         m_Velocity = velocity;
     }
 
+    void SetPosition(Vector2D Pos){m_Postion = Pos;}
+
+    
+
     //Update
-    void Update(float dt){
-        m_Postion.X = m_Velocity.X * dt;
-        m_Postion.Y = m_Velocity.Y * dt;
-        m_Accelaration.X = (m_Force.X + m_Friction.X)/m_Mass;
-        m_Accelaration.Y = m_Gravity + m_Force.Y/m_Mass;
-        m_Velocity = m_Accelaration * dt;
-        m_Postion = m_Velocity * dt;
+     void Update(float dt) {
+    m_Accelaration.X = (m_Force.X + m_Friction.X) / m_Mass;
+    m_Accelaration.Y = (m_Force.Y) / m_Mass + m_Gravity;  // gravity added once
+
+    m_Velocity += m_Accelaration * dt;
+
+    m_PositionDelta = m_Velocity * dt * 0.7f;
+}
+    void Reset() {
+        m_Force.Zero();
+        m_Velocity.Zero();
+        m_Accelaration.Zero();
+        m_PositionDelta.Zero();
     }
-
-
-
 
 };
 

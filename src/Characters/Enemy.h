@@ -14,8 +14,9 @@ private:
     SeqAnimation* m_Animation;
     Vector2D m_LastSafePosition;
     float m_DetectionRadius = 200.0f;
-    float m_Speed = 2.0f;
+    float m_Speed = 40.0f;
     bool m_Ischasing = false;
+    SDL_RendererFlip m_flip = SDL_FLIP_NONE;
 
 public:
     Enemy(Properties* props);

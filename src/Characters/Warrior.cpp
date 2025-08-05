@@ -116,11 +116,12 @@ void Warrior::Update(float dt)
         m_IsAttacking = false;
         m_AttackTIme = ATTACK_TIME;
     }
+    
 
-    // Move along x axis
     m_RigidBody->Update(dt);
+    // Move along x axis
     m_LastSafePosition.X = m_Transform->X;
-    m_Transform->X += m_RigidBody->Position().X;
+    m_Transform->X += m_RigidBody->PositionDelta().X;
     m_Collider->Set(m_Transform->X, m_Transform->Y, 96, 96);
     if (CollisionHandler::GetInstance()->MapCollision(m_Collider->Get()))
     {
@@ -130,7 +131,7 @@ void Warrior::Update(float dt)
     // Move along y axis
     m_RigidBody->Update(dt);
     m_LastSafePosition.Y = m_Transform->Y;
-    m_Transform->Y += m_RigidBody->Position().Y;
+    m_Transform->Y += m_RigidBody->PositionDelta().Y;
     m_Collider->Set(m_Transform->X, m_Transform->Y, 96, 96);
     if (CollisionHandler::GetInstance()->MapCollision(m_Collider->Get()))
     {
@@ -141,7 +142,7 @@ void Warrior::Update(float dt)
     {
         m_IsGrounded = false;
     }
-
+    m_RigidBody->Reset();
 
     m_Origin->X = m_Transform->X + m_Width / 2;
     m_Origin->Y = m_Transform->Y + m_Height / 2;

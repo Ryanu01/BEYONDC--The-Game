@@ -42,6 +42,20 @@ public:
         return Vector2D(X/length, Y/length);
     }
 
+    Vector2D operator/(float scalar) const {
+        return Vector2D(X / scalar, Y / scalar);
+    }
+ Vector2D& operator+=(const Vector2D& v) {
+        X += v.X;
+        Y += v.Y;
+        return *this;
+    }
+    void Zero()
+    {
+        X = 0.0f;
+        Y = 0.0f;
+    }
+
     void Log(std::string msg = "")
     {
         std::cout<< msg <<"(X Y) = (" << X << " "<< Y << ")"<<std::endl;
